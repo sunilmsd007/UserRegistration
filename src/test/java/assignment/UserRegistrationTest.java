@@ -2,10 +2,40 @@ package assignment;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import static org.junit.Assert.*;
+import java.util.Arrays;
+import java.util.Collection;
+import org.junit.Before;
 
+@RunWith(Parameterized.class)
 public class UserRegistrationTest {
 
-	UserRegistration user = new UserRegistration();
+	String emailID;
+	boolean expectedResult;
+	UserRegistration user;
+
+	public UserRegistrationTest(String emailID, boolean expectedResult) {
+		this.emailID = emailID;
+		this.expectedResult = expectedResult;
+	}
+
+	@Before
+	public void initialize() {
+		user = new UserRegistration();
+	}
+
+	@Parameterized.Parameters
+	public static Collection emails() {
+		return Arrays.asList(new Object[][] { { "abc.xyz@bl.co.in", true }, { "abc+100@gmail.com", true },
+				{ "abcd@.com", false }, { ".abc@yahoo.com.in", false } });
+	}
+
+	@Test
+	public void validateMultipleEmails() {
+		assertEquals(expectedResult, user.validateEmail(emailID));
+	}
 
 	@Test
 	public void returnValidFirstName() {
@@ -34,18 +64,6 @@ public class UserRegistrationTest {
 	@Test
 	public void returnValidEmail() {
 		boolean result = user.validateEmail("abc.xyz@bl.co.in");
-		Assert.assertEquals(true, result);
-	}
-
-	@Test
-	public void returnInvalidEmail() {
-		boolean result = user.validateEmail("abcd.xyz@bl.co.in");
-		Assert.assertEquals(false, result);
-	}
-
-	@Test
-	public void returnValidPhoneNumber() {
-		boolean result = user.validatePhoneNumber("91 9164144279");
 		Assert.assertEquals(true, result);
 	}
 
