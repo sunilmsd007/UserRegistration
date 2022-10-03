@@ -32,6 +32,12 @@ public class UserRegistration {
 		Matcher matcher = pattern.matcher(phonenumber);
 		return matcher.matches();
 	}
+	public boolean validatePassWord(String password) {
+		//method to validate password with minimum 8 characters and atleast one digit, capital letter & special character
+        Pattern pattern = Pattern.compile("[A-Z]+[0-9]+[@$&#]{1}\\w{5,}");
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+}
 
 	public static void main(String[] args) {
 		UserRegistration user = new UserRegistration();
@@ -43,5 +49,7 @@ public class UserRegistration {
 		System.out.println(user.validateEmail("abcd.xyz@bl.com.in")); // invalid input
 		System.out.println(user.validatePhoneNumber("91 9164144279")); // valid input
 		System.out.println(user.validatePhoneNumber("919164144279")); // invalid input
+		System.out.println(user.validatePassWord("A1@aS7ft")); //valid input
+		System.out.println(user.validatePassWord("sUat8yt")); //invalid input
 	}
 }
