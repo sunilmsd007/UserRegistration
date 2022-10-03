@@ -30,4 +30,16 @@ public class UserRegistrationTest {
 		boolean result = user.validateFirstName("kumar");
 		Assert.assertEquals(false, result);
 	}
+
+	@Test
+	public void returnValidEmail() {
+		boolean result = user.validateEmail("abc.xyz@bl.co.in");
+		Assert.assertEquals(true, result);
+	}
+
+	@Test
+	public void returnInvalidEmail() {
+		boolean result = user.validateEmail("abcd.xyz@bl.co.in");
+		Assert.assertEquals(false, result);
+	}
 }
