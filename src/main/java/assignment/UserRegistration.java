@@ -12,9 +12,18 @@ public class UserRegistration {
 		return matcher.matches();
 	}
 
+	public boolean validateLastName(String lastname) {
+		// last name starts with capital letter and have minimum 3 characters
+		Pattern pattern = Pattern.compile("^[A-Z][a-z]{2,}");
+		Matcher matcher = pattern.matcher(lastname);
+		return matcher.matches();
+	}
+
 	public static void main(String[] args) {
 		UserRegistration user = new UserRegistration();
-		System.out.println(user.validateFirstName("Sunil")); //valid input
-		System.out.println(user.validateFirstName("sunil")); //invalid input
+		System.out.println(user.validateFirstName("Sunil")); // valid input
+		System.out.println(user.validateFirstName("sunil")); // invalid input
+		System.out.println(user.validateLastName("Kumar")); // valid input
+		System.out.println(user.validateLastName("kumar")); // invalid input
 	}
 }
