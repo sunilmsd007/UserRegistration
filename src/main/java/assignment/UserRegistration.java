@@ -20,9 +20,16 @@ public class UserRegistration {
 	}
 
 	public boolean validateEmail(String email) {
-		//method to validate email
+		// method to validate email
 		Pattern pattern = Pattern.compile("(abc)[.]?[a-z]*@(bl.co)[.]?[a-z]{0,2}$");
 		Matcher matcher = pattern.matcher(email);
+		return matcher.matches();
+	}
+
+	public boolean validatePhoneNumber(String phonenumber) {
+		// method to validate phone number
+		Pattern pattern = Pattern.compile("[0-9]{2} [0-9]{10}");
+		Matcher matcher = pattern.matcher(phonenumber);
 		return matcher.matches();
 	}
 
@@ -34,5 +41,7 @@ public class UserRegistration {
 		System.out.println(user.validateLastName("kumar")); // invalid input
 		System.out.println(user.validateEmail("abc.xyz@bl.co.in")); // valid input
 		System.out.println(user.validateEmail("abcd.xyz@bl.com.in")); // invalid input
+		System.out.println(user.validatePhoneNumber("91 9164144279")); // valid input
+		System.out.println(user.validatePhoneNumber("919164144279")); // invalid input
 	}
 }
